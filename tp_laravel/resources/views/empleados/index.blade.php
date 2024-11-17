@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Lista de Empleados</h1>
+    @if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
     <table class="table" style="max-width: 1000px; margin: 0 auto;">
         <thead class="table-light">
             <tr>
@@ -24,7 +27,13 @@
                 <td>{{ $empleado->alta_contrato }}</td>
                 <td>{{ $empleado->salario }}</td>
                 <td>{{ $empleado->activo ? 'Sí' : 'No' }}</td>
-                <td>{{ $empleado->especialidad }}</td>
+                <td>
+                    @if ($empleado->departamento)
+                    {{ $empleado->departamento->descripcion }}
+                @else
+                    Sin departamento
+                @endif
+                </td>
                 <td>
                     <a href="{{ route('empleados.show', $empleado->id_empleado) }}" class="btn btn-success mb-2">Ver</a>
                     <a href="{{ route('empleados.edit', $empleado->id_empleado) }}" class="btn btn-warning">Editar</a>
