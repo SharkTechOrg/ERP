@@ -26,7 +26,7 @@
             <button type="submit" class="btn btn-danger me-2">Eliminar</button>
         </form>
 
-        <a href="{{ route('empleados.index') }}" class="btn btn-primary">Volver al Listado</a>
+       
     </div>
 
 @endsection
