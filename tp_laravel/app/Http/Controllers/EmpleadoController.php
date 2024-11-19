@@ -66,24 +66,61 @@ class EmpleadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit($id)
+{
+    $empleado = Empleado::findOrFail($id);
+    $departamentos = Departamento::all(); // Recupera todos los departamentos
+
+    return view('empleados.edit', compact('empleado', 'departamentos'));
+}
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+{
+    // Validación de los datos enviados desde el formulario
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'apellido' => 'required|string|max:255',
+        'email' => 'required|email|unique:empleados,email,' . $id . ',id_empleado',
+        'alta_contrato' => 'required|date',
+        'salario' => 'required|numeric|min:0',
+        'activo' => 'required|boolean',
+        'id_departamento' => 'nullable|exists:departamentos,id_departamento',
+    ]);
+
+    // Buscar el empleado por su ID
+    $empleado = Empleado::findOrFail($id);
+
+    // Actualizar los datos del empleado, manteniendo el departamento si no se cambia
+    $empleado->update([
+        'nombre' => $request->nombre,
+        'apellido' => $request->apellido,
+        'email' => $request->email,
+        'alta_contrato' => $request->alta_contrato,
+        'salario' => $request->salario,
+        'activo' => $request->activo,
+        'id_departamento' => $request->id_departamento ?: $empleado->id_departamento, // Mantener el valor anterior si no se selecciona un departamento nuevo
+    ]);
+
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('empleados.index')
+                     ->with('success', 'Empleado actualizado correctamente.');
+}
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $empleado = Empleado::findOrFail($id);
+        $empleado->delete();
+        return redirect()->route('empleados.index')->with('success', 'Empleado eliminado exitosamente.');
     }
 }
