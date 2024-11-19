@@ -38,21 +38,22 @@ class EmpleadoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:empleados,email',
-            'alta_contrato' => 'required|date|before_or_equal:today',
-            'salario' => 'required|numeric|min:0|max:999999999.99',
-            'activo' => 'required|boolean',
-            'id_departamento' => 'required|exists:departamentos,id_departamento',
-        ]);
-    
-        Empleado::create($validated);
-    
-        return redirect()->route('empleados.index')->with('success', 'Empleado creado exitosamente.');
-    }
+{
+    $validated = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'apellido' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:empleados,email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/',
+        'alta_contrato' => 'required|date|before_or_equal:today',
+        'salario' => 'required|numeric|min:0|max:999999999.99',
+        'activo' => 'required|boolean',
+        'id_departamento' => 'required|exists:departamentos,id_departamento',
+    ]);
+
+    Empleado::create($validated);
+
+    return redirect()->route('empleados.index')->with('success', 'Empleado creado exitosamente.');
+}
+
 
     /**
      * Display the specified resource.
@@ -85,7 +86,7 @@ class EmpleadoController extends Controller
     $request->validate([
         'nombre' => 'required|string|max:255',
         'apellido' => 'required|string|max:255',
-        'email' => 'required|email|unique:empleados,email,' . $id . ',id_empleado',
+        'email' => 'required|email|unique:empleados,email,' . $id . ',id_empleado|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/',
         'alta_contrato' => 'required|date|before_or_equal:today',
         'salario' => 'required|numeric|min:0|max:999999999.99',
         'activo' => 'required|boolean',
