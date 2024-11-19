@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2024 a las 07:15:49
+-- Tiempo de generación: 19-11-2024 a las 18:34:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -79,7 +79,7 @@ CREATE TABLE `empleados` (
   `apellido` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `alta_contrato` date NOT NULL,
-  `salario` decimal(11,2) NOT NULL,
+  `salario` int(9) NOT NULL,
   `activo` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -91,17 +91,17 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id_empleado`, `nombre`, `apellido`, `email`, `alta_contrato`, `salario`, `activo`, `created_at`, `updated_at`, `id_departamento`) VALUES
-(2, 'Ana', 'González', 'ana.gonzalez@example.com', '2023-03-12', 2800.00, 1, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 2),
-(3, 'Carlos', 'López', 'carlos.lopez@example.com', '2023-07-25', 3200.00, 0, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 3),
-(4, 'María', 'Benítez', 'maria.benitez@example.com', '2023-05-09', 2700.00, 1, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 4),
-(5, 'Luis', 'Hernández', 'luis.hernandez@example.com', '2023-02-20', 3000.00, 1, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 5),
-(6, 'Andrea', 'Ramírez', 'andrea.ramirez@example.com', '2023-06-15', 2300.00, 1, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 1),
-(7, 'Marta', 'Díaz', 'marta.diaz@example.com', '2023-04-30', 2500.00, 0, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 2),
-(8, 'José', 'Gómez', 'jose.gomez@example.com', '2023-01-10', 3500.00, 1, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 3),
-(9, 'Laura', 'Vázquez', 'laura.vazquez@example.com', '2023-09-18', 2200.00, 0, '2024-11-17 00:29:06', '2024-11-17 00:29:06', 4),
-(10, 'Javier', 'Morales', 'javier.morales@example.com', '2023-10-05', 3100.00, 1, '2024-11-17 00:29:06', '2024-11-19 08:59:58', 3),
-(13, 'Jorge EDIT 2', 'Marinoni', 'jorge@sharktech.com.ar', '2024-11-19', 100999999.00, 0, '2024-11-19 08:41:24', '2024-11-19 09:03:53', 3),
-(14, 'Alan', 'Gómez', 'alan@gomez.com', '2020-01-01', 2000.00, 1, '2024-11-19 09:04:55', '2024-11-19 09:04:55', 1);
+(2, 'Ana', 'González', 'ana.gonzalez@example.com', '2023-03-12', 952000, 1, '2024-11-17 00:29:06', '2024-11-19 19:25:57', 2),
+(3, 'Carlos', 'López', 'carlos.lopez@example.com', '2020-07-25', 1355000, 0, '2024-11-17 00:29:06', '2024-11-19 20:27:16', 3),
+(4, 'María', 'Benítez', 'maria.benitez@example.com', '2023-05-09', 830000, 1, '2024-11-17 00:29:06', '2024-11-19 19:26:29', 4),
+(5, 'Luis', 'Hernández', 'luis.hernandez@example.com', '2024-02-20', 1000500, 1, '2024-11-17 00:29:06', '2024-11-19 20:27:32', 5),
+(6, 'Andrea', 'Ramírez', 'andrea.ramirez@example.com', '2023-06-15', 1800000, 1, '2024-11-17 00:29:06', '2024-11-19 19:46:06', 1),
+(7, 'Marta', 'Díaz', 'marta.diaz@example.com', '2018-04-30', 1250000, 0, '2024-11-17 00:29:06', '2024-11-19 20:27:46', 2),
+(8, 'José', 'Gómez', 'jose.gomez@example.com', '2023-01-10', 1580000, 1, '2024-11-17 00:29:06', '2024-11-19 19:46:55', 3),
+(9, 'Laura', 'Vázquez', 'laura.vazquez@example.com', '2023-09-18', 1120000, 0, '2024-11-17 00:29:06', '2024-11-19 19:47:06', 2),
+(10, 'Javier', 'Morales', 'javier.morales@example.com', '2023-10-05', 1580000, 1, '2024-11-17 00:29:06', '2024-11-19 19:47:28', 3),
+(13, 'Vanesa', 'Delgado', 'v.delgado@hotmail.com', '2020-01-01', 1550000, 0, '2024-11-19 08:41:24', '2024-11-19 19:48:20', 3),
+(17, 'Leonel', 'Andrade', 'l.andrade@gmail.com', '2002-02-01', 1930000, 1, '2024-11-19 19:49:31', '2024-11-19 19:50:08', 5);
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('klv2BVYWWk54GgnWRBEHKo9lM9Uj0zkctI02CK3h', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWmtGbDZOWFpJWHFZYmpqcVNSd1hTSmpERjhqRTNZVXp3REM0eVFFNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9lbXBsZWFkb3MvMTQvZWRpdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1731996772);
+('mJY5Raj7aCK16FBPoYa3F0rXjrYEoz2hwn8PklJd', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoickdMbklzTGhGN1IxcGNNS2pBbEhlZzMzWXlkSmY4M3I4MUlVMExhUiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9lbXBsZWFkb3MiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1732037653);
 
 -- --------------------------------------------------------
 
@@ -320,7 +320,7 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id_empleado` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_empleado` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
