@@ -39,17 +39,17 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:empleados,email',
-            'alta_contrato' => 'required|date',
-            'salario' => 'required|numeric|min:0',
+            'alta_contrato' => 'required|date|before_or_equal:today',
+            'salario' => 'required|numeric|min:0|max:999999999.99',
             'activo' => 'required|boolean',
             'id_departamento' => 'required|exists:departamentos,id_departamento',
         ]);
     
-        Empleado::create($validatedData);
+        Empleado::create($validated);
     
         return redirect()->route('empleados.index')->with('success', 'Empleado creado exitosamente.');
     }
@@ -86,8 +86,8 @@ class EmpleadoController extends Controller
         'nombre' => 'required|string|max:255',
         'apellido' => 'required|string|max:255',
         'email' => 'required|email|unique:empleados,email,' . $id . ',id_empleado',
-        'alta_contrato' => 'required|date',
-        'salario' => 'required|numeric|min:0',
+        'alta_contrato' => 'required|date|before_or_equal:today',
+        'salario' => 'required|numeric|min:0|max:999999999.99',
         'activo' => 'required|boolean',
         'id_departamento' => 'nullable|exists:departamentos,id_departamento',
     ]);
