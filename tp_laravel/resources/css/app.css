@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.navbar-custom {
+    background-color: #040040 !important;
+}

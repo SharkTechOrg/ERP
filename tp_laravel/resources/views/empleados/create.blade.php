@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-center align-items-center vh-100">
+<div class="d-flex justify-content-center align-items-center mt-5">
     <div class="card p-4 shadow-lg" style="width: 850px;">
         <h4 class="text-center mb-4">Crear Nuevo Empleado</h4>
 
