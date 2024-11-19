@@ -19,9 +19,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white active" aria-current="page" href="{{ url('/') }}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('empleados.index') }}">Ver Listado</a>
                     </li>
                     <li class="nav-item">

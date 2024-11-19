@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('email')->unique();
             $table->date('alta_contrato');
-            $table->decimal('salario',11,2);
+            $table->integer('salario');
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });

@@ -44,7 +44,7 @@ class EmpleadoController extends Controller
         'apellido' => 'required|string|max:255',
         'email' => 'required|email|max:255|unique:empleados,email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/',
         'alta_contrato' => 'required|date|before_or_equal:today',
-        'salario' => 'required|numeric|min:0|max:999999999.99',
+        'salario' => 'required|numeric|min:0|max:999999999',
         'activo' => 'required|boolean',
         'id_departamento' => 'required|exists:departamentos,id_departamento',
     ]);
@@ -88,7 +88,7 @@ class EmpleadoController extends Controller
         'apellido' => 'required|string|max:255',
         'email' => 'required|email|unique:empleados,email,' . $id . ',id_empleado|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/',
         'alta_contrato' => 'required|date|before_or_equal:today',
-        'salario' => 'required|numeric|min:0|max:999999999.99',
+        'salario' => 'required|numeric|min:0|max:999999999',
         'activo' => 'required|boolean',
         'id_departamento' => 'nullable|exists:departamentos,id_departamento',
     ]);

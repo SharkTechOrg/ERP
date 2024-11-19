@@ -20,7 +20,7 @@
                         <th>Apellido</th>
                         <th>Email</th>
                         <th>Alta Contrato</th>
-                        <th>Salario</th>
+                        <th class="text-end">Salario</th> <!-- Encabezado alineado a la derecha -->
                         <th>Activo</th>
                         <th>Departamento</th>
                         <th>Acciones</th>
@@ -32,8 +32,13 @@
                             <td>{{ $empleado->nombre }}</td>
                             <td>{{ $empleado->apellido }}</td>
                             <td>{{ $empleado->email }}</td>
-                            <td>{{ $empleado->alta_contrato }}</td>
-                            <td>${{ number_format($empleado->salario, 2, ',', '.') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($empleado->alta_contrato)->format('d/m/Y') }}</td>
+                            <td class="text-end">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>$</span>
+                                    <span>{{ number_format($empleado->salario, 0, ',', '.') }}</span>
+                                </div>
+                            </td> <!-- Signo $ alineado a la izquierda y valor a la derecha -->
                             <td>{{ $empleado->activo ? 'Sí' : 'No' }}</td>
                             <td>
                                 @if ($empleado->departamento)
